@@ -17,7 +17,7 @@ def get_workbook():
 @app.route('/')
 def index():
     # Serve the index.html file when running locally
-    return render_template('index.html')
+    return render_template('index.html', message="Data saved successfully!")
 
 @app.route('/submit', methods=['POST'])
 def submit():

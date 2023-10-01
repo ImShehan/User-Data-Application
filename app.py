@@ -16,6 +16,7 @@ def get_workbook():
 
 @app.route('/')
 def index():
+    # Serve the index.html file when running locally
     return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
@@ -38,6 +39,7 @@ def submit():
     excel_file_name = "user_data.xlsx"
     workbook.save(excel_file_name)
 
+    # Redirect to the index page after submitting data
     return render_template('index.html', message="Data saved successfully!")
 
 if __name__ == '__main__':

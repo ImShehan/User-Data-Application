@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from openpyxl import load_workbook, Workbook
 from datetime import datetime
 
@@ -17,7 +17,7 @@ def get_workbook():
 @app.route('/')
 def index():
     # Serve the index.html file when running locally
-    return render_template('index.html', message="Data saved successfully!")
+    return render_template('index.html', message="")
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -39,8 +39,8 @@ def submit():
     excel_file_name = "user_data.xlsx"
     workbook.save(excel_file_name)
 
-    # Redirect to the index page after submitting data
-    return render_template('index.html', message="Data saved successfully!")
+    # Redirect to the index page after submitting data with a success message
+    return redirect(url_for('index', message="Data saved successfully!"))
 
 if __name__ == '__main__':
     app.run(debug=True)
